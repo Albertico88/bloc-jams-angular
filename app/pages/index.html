@@ -22,9 +22,10 @@
     </div>
   </nav>
 
-  <ui-view></ui-view>
+  <ui-view></ui-view> <!-- index.html will act as the global file for Bloc Jams. The ui-view directive (with the help of an external module known as UI-Router) tells Angular where to place the templates when they're requested -->
 
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  <script src="//unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
   <script src="/scripts/app.js"></script>
 </body>
 </html>
