@@ -8,7 +8,8 @@
 
     $stateProvider
       .state('landing', {
-          url: '/', // address bar url name 
+          url: '/', // address bar url name
+          controller: 'LandingCtrl as landing',
           templateUrl: '/templates/landing.html'
          })
       .state('collection', {
