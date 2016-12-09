@@ -8,12 +8,18 @@
 
     $stateProvider
       .state('landing', {
-          url: '/', // address bar url name 
+          url: '/', // address bar url name
+          controller: 'LandingCtrl as landing',
           templateUrl: '/templates/landing.html'
          })
       .state('collection', {
         url: '/collection',
         templateUrl: '/templates/collection.html'
+      })
+      .state('contact', {
+        url: '/contact',
+        controller: 'ContactCtrl as contact',
+        templateUrl: '/templates/contact.html'
       })
       .state('album', {
         url: '/album',

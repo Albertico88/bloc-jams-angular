@@ -16,6 +16,11 @@
         url: '/collection',
         templateUrl: '/templates/collection.html'
       })
+      .state('contact', {
+        url: '/contact',
+        controller: 'ContactCtrl as contact',
+        templateUrl: '/templates/contact.html'
+      })
       .state('album', {
         url: '/album',
         templateUrl: '/templates/album.html'
