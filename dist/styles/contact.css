@@ -1,0 +1,6 @@
+.contacts-number,
+.contacts-email {
+  position: relative;
+  margin: 10px;
+  text-align: center;
+}
