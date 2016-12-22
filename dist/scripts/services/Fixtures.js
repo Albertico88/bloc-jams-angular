@@ -1,6 +1,7 @@
 (function() {
   function Fixtures() {
     var Fixtures = {};
+// We declare a variable and set it to an empty object {}. The factory will return this object and make its properties and methods available to other parts of our Angular application.
 
     var albumPicasso = {
       title: 'The Colors',
@@ -43,7 +44,7 @@
       }
       return this.albums;
     };
-    
+
     return Fixtures;
   }
 
