@@ -2,13 +2,15 @@
   function SongPlayer() {
     var SongPlayer = {};
 
-    var curentSong = null;
+    var currentSong = null;
     var currentBuzzObject = null;
 
+// PLAY Method
     SongPlayer.play = function(song) {
       if (currentSong !== song) {
         if (currentBuzzObject) {
           currentBuzzObject.stop();
+          currentSong.playing = null; // 'playing' variable TBD
         }
 
         currentBuzzObject = new buzz.sound(song.audioUrl, {
@@ -19,12 +21,19 @@
         currentSong = song;
 
         currentBuzzObject.play();
+        song.playing = true;
 
       } else if (currentSong === song) {
           if (currentBuzzObject.isPaused()) {
             currentBuzzObject.play();
           }
       }
+    };
+
+// PAUSE Method
+    SongPlayer.pause = function(song) {
+      currentBuzzObject.pause();
+      song.playing = false;
     };
 
     return SongPlayer;
