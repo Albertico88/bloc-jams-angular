@@ -1,7 +1,14 @@
 (function() {
-  function SongPlayer() {
+  function SongPlayer(Fixtures) {
     var SongPlayer = {};
 
+// injected Fixtures Service to use it's getAlbum function, which returns the Picasso Album.
+    var currentAlbum = Fixtures.getAlbum();
+
+// function returns index of the selected song
+    var getSongIndex = function(song) {
+      return currentAlbum.songs.indexOf(song);
+    };
 /**
 * @desc Buzz Object audio file
 * @type { Object }
@@ -43,12 +50,13 @@
 
     SongPlayer.currentSong = null;
 /**
-* PLAY Method (public)
+* PLAY Method
 * @method SongPlayer.play
 * @desc sets correct song and plays it via the playSong function, plays song if song is paused.
 * @param { Object } song
 */
     SongPlayer.play = function(song) {
+      song = song || SongPlayer.currentSong;
       if (SongPlayer.currentSong !== song) {
         setSong(song);
         playSong(song);
@@ -61,14 +69,32 @@
     };
 
 /**
-* PAUSE Method (public)
+* PAUSE Method
 * @method SongPlayer.pause
 * @desc pauses the song
 * @param { Object } song
 */
     SongPlayer.pause = function(song) {
+      song = song || SongPlayer.currentSong;
       currentBuzzObject.pause();
       song.playing = false;
+    };
+
+// PREVIOUS Method: selects the song previous to the currently playing song.
+    SongPlayer.previous = function() {
+      var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+      currentSongIndex --;
+
+      if (currentSongIndex < 0) {
+        currentBuzzObject.stop();
+        SongPlayer.currentSong.playing = null;
+
+      } else {
+
+        var song = currentAlbum.songs[currentSongIndex];
+        setSong(song);
+        playSong(song);
+      }
     };
 
     return SongPlayer;
@@ -76,5 +102,5 @@
 
   angular
     .module('blocJams')
-    .factory('SongPlayer', SongPlayer);
+    .factory('SongPlayer', ['Fixtures', SongPlayer]);
 })();
