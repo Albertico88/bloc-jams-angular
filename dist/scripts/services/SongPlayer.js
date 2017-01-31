@@ -97,6 +97,25 @@
       }
     };
 
+// NEXT Method: skips to the following song.
+    SongPlayer.next = function() {
+      var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+      currentSongIndex ++;
+
+      var albumLength = currentAlbum.length;
+
+      if (currentSongIndex > albumLength) {
+        currentBuzzObject.stop();
+        SongPlayer.currentSong.playing = null;
+
+      } else {
+
+        var song = currentAlbum.songs[currentSongIndex];
+        setSong(song);
+        playSong(song);
+      }
+    };
+
     return SongPlayer;
   }
 
