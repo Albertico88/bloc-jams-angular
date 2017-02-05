@@ -9,7 +9,19 @@
       scope: { },
       // Declaring an empty scope property ensures that a new scope will exist solely for the directive (referred to as isolate-scope). An isolate-scope allows us to bind functions from the directive's view to its scope.
       link: function(scope, element, attributes) {
-        // directive logic to return
+        scope.value = 0;
+        scope.max = 100;
+
+        var percentString = function() {
+          var value = scope.value;
+          var max = scope.max;
+          var percent = value / max * 100;
+          return percent + '%';
+        };
+
+        scope.fillStyle = function() {
+          return {width: percentString()};
+        };
       }
       /*  The link function is automatically generated and scoped to the element defining the directive. Think of it as a function that executes when the directive is instantiated in the view. This is where all logic related to DOM manipulation will go.
         1) The link method's first argument is its scope object. Attributes and methods on the scope object are accessible within the directive's view.
