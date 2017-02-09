@@ -21,6 +21,16 @@
 
         var seekBar = $(element);
 
+        // monitor (using $observe) the value changes for 'value' (current playback position in song) and 'max' (total duration of song).
+        attributes.$observe('value', function(newValue) {
+          scope.value = newValue;
+        });
+
+        attributes.$observe('max', function(newValue) {
+          scope.max = newValue;
+        });
+
+
         var percentString = function() {
           var value = scope.value;
           var max = scope.max;

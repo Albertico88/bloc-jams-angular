@@ -49,6 +49,10 @@
 // ---------- PUBLIC --------------
 
     SongPlayer.currentSong = null;
+
+    // Current playback time (in seconds) of currently playing song.
+    SongPlayer.currentTime = null;
+
 /**
 * PLAY Method
 * @method SongPlayer.play
