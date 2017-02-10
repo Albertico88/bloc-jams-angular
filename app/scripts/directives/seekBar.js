@@ -14,7 +14,9 @@
       templateUrl: 'templates/directives/seek_bar.html',
       replace: true,
       restrict: 'E',
-      scope: { },
+      scope: {
+        onChange: '&'
+      },
       link: function(scope, element, attributes) {
         scope.value = 0;
         scope.max = 100;
@@ -29,6 +31,7 @@
         attributes.$observe('max', function(newValue) {
           scope.max = newValue;
         });
+        // when the observed attribute is set or changed, we execute a callback (the second argument) that sets a new scope value
 
 
         var percentString = function() {
@@ -49,6 +52,7 @@
         scope.onClickSeekBar = function(event) {
           var percent = calculatePercent(seekBar, event);
           scope.value = percent * scope.max;
+          notifyOnChange(scope.value);
         };
 
         scope.trackThumb = function() {
@@ -56,8 +60,15 @@
             var percent = calculatePercent(seekBar, event);
             scope.$apply(function() {
               scope.value = percent * scope.max;
+              notifyOnChange(scope.value);
             });
           });
+
+        var notifyOnChange = function(newValue) {
+          if (typeof scope.onChange === 'function') {
+            scope.onChange({value: newValue});
+          }
+        };
 
           $document.bind('mouseup.thumb', function() {
             $document.unbind('mousemove.thumb');
