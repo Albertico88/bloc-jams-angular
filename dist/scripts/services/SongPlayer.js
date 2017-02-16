@@ -55,10 +55,13 @@
 
 // ---------- PUBLIC --------------
 
+
     SongPlayer.currentSong = null;
 
     // Current playback time (in seconds) of currently playing song.
     SongPlayer.currentTime = null;
+
+    SongPlayer.volume = 50;
 
 /**
 * PLAY Method
@@ -132,6 +135,14 @@
       if (currentBuzzObject) {
         currentBuzzObject.setTime(time);
       }
+    };
+
+// setVolume: Sets song volume (defaults to 80%)
+    SongPlayer.setVolume = function(volume){
+      if (currentBuzzObject) {
+        currentBuzzObject.setVolume(volume);
+    }
+      SongPlayer.volume = volume;
     };
 
     return SongPlayer;
