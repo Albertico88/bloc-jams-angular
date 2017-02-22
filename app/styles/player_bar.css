@@ -13,7 +13,7 @@
   vertical-align: middle;
 }
 
-/* What does this do? */
+
 .player-bar a,
 
 .player-bar a:hover {
@@ -105,7 +105,7 @@
 
 .seek-bar .fill {
   background: white;
-  width: 36%;
+  width: 0%;
   height: 0.25rem;
   border-radius: 2px;
 }
@@ -115,7 +115,7 @@
   height: 0.5rem;
   width: 0.5rem;
   background-color: white;
-  left: 36%;
+  left: 0%;
   top: 50%;
   margin-left: -0.25rem;
   margin-top: -0.25rem;
